@@ -71,7 +71,20 @@ This file is simultaneously a **JSON Schema** (defines structure) and a **JSON-L
 ### Get Involved
 - [Report Issues](https://github.com/OO-LD/schema/issues)
 
-
 ---
 
 **Start exploring**: Try the [interactive playground](https://oo-ld.github.io/playground-yaml/) or check out the [specification](https://github.com/OO-LD/schema).
+
+---
+
+## Funding
+
+OO-LD is funded by the German **Federal Ministry of Research, Technology and
+Space (BMFTR)** through the **[Prototype Fund](https://prototypefund.de)** under
+funding code (Förderkennzeichen) **16IS26S16**.
+
+<p>
+  <img src="assets/bmftr-funded-by-en.png" alt="With funding from the Federal Ministry of Research, Technology and Space (BMFTR)" height="90">
+  &nbsp;&nbsp;&nbsp;
+  <img src="assets/prototype-fund-en.png" alt="Supported by the Prototype Fund" height="70">
+</p>
