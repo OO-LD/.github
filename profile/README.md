@@ -79,12 +79,21 @@ This file is simultaneously a **JSON Schema** (defines structure) and a **JSON-L
 
 ## Funding
 
-OO-LD is funded by the German **Federal Ministry of Research, Technology and
+OO-LD development on a generic level is funded by the German **Federal Ministry of Research, Technology and
 Space (BMFTR)** through the **[Prototype Fund](https://prototypefund.de)** under
 funding code (Förderkennzeichen) **16IS26S16**.
 
 <p>
   <img src="assets/bmftr-funded-by-en.png" alt="With funding from the Federal Ministry of Research, Technology and Space (BMFTR)" height="90">
   &nbsp;&nbsp;&nbsp;
-  <img src="assets/prototype-fund-en.png" alt="Supported by the Prototype Fund" height="70">
+  <img src="assets/prototype-fund-en.png" alt="Supported by the Prototype Fund" height="90">
+</p>
+
+
+
+Materials science specific extension and adoption is funded by the European Union’s Horizon European research and innovation programme under grant agreement No 101293545 (MaterialsCommons).
+<p>
+  <img src="assets/eu-funded-by-en.png" alt="With funding from the the European Union’s Horizon European research and innovation programme" height="90">
+  &nbsp;&nbsp;&nbsp;
+  <img src="assets/mc4eu_logo.png" alt="Part of MaterialsCommons" height="90">
 </p>
