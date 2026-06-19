@@ -3,8 +3,17 @@
 Open community to develop schemas and tools to link object-oriented programming with linked data & the semantic web.
 
 > **We don't reinvent standards — we compose them. OO-LD as a *composition* is what we're bringing into open standardization.**
- 
-The abbreviation `OO-LD` (and the placement of the hyphen) is intentional: it highlights the object\-oriented focus while echoing JSON\-LD.
+
+The abbreviation `OO-LD` (and the placement of the hyphen) is intentional: it highlights the object-oriented focus while echoing JSON-LD.
+
+## Why OO-LD?
+
+*The short version:*
+
+- **One source, many outputs** — the same schema validates JSON data and generates RDF, code (e.g. Pydantic), data-entry UIs, and OpenAPI specs.
+- **Standards-aligned, not standards-locked** — every document is at once a valid [JSON Schema 2020-12](https://json-schema.org/specification) and a valid [JSON-LD 1.1](https://www.w3.org/TR/json-ld11/) context; no fork, no new language.
+- **Reuses the tooling you already have** — works with existing JSON Schema and JSON-LD libraries; OO-LD-specific extensions are safely ignored by both.
+- **Linked data without the learning curve** — web-retrievable, semantically interoperable schemas without first becoming an RDF expert.
 
 ## The Problem
 
@@ -20,13 +29,6 @@ assumes a level of semantic-web expertise that most application developers don't
 **OO-LD merges both into a single, referenceable, versioned document** so one source
 describes *shape* and *meaning* together. Object-oriented developers get interoperable
 linked data without first having to become RDF experts.
-
-> **Standards status.** OO-LD builds strictly on top of the existing industry standards
-> [JSON Schema 2020-12](https://json-schema.org/specification) and
-> [JSON-LD 1.1](https://www.w3.org/TR/json-ld11/) — no new syntax, no fork. The OO-LD
-> development team plans to bring the specification into a
-> [W3C Community Group](https://www.w3.org/community/) during the v1.0 cycle to
-> establish open governance and long-term stability.
 
 <details>
 <summary><b>What is JSON Schema?</b></summary>
@@ -133,14 +135,6 @@ hierarchies. An <code>Employee</code> schema can inherit from <code>Person</code
 both structural and semantic definitions are inherited together. See the
 <a href="#inheritance-and-composition">Inheritance and Composition</a> example below.
 </details>
-
-## Why OO-LD?
-
-- **Standards-aligned, not standards-locked**: Every OO-LD document is simultaneously a valid [JSON Schema 2020-12](https://json-schema.org/specification) and a valid [JSON-LD 1.1](https://www.w3.org/TR/json-ld11/) context — no fork, no new file format. OO-LD-specific extensions are designed to be safely ignored by standard tooling.
-- **Tool Compatibility**: Works with all existing JSON-SCHEMA and JSON-LD tooling
-- **Web-Native**: Schemas follow linked data principles, making them retrievable over the web for flexible composition
-- **Multi-Purpose**: Use the same schema for validation, RDF generation, code generation, UI generation, and API definitions
-- **Developer-Friendly**: Compatible with LLM APIs, OpenAPI, and modern development workflows
 
 ## Minimal Example
 
@@ -307,7 +301,7 @@ class Employee(Person):                          # ← real subclass, not flat d
             ]
         }
     )
-    job_title: str
+    jobTitle: str
     """Job title"""
     employer: Optional[str] = None
     """IRI of the employing organization"""
@@ -340,6 +334,29 @@ JSON Schema doesn't have a dedicated <code>extends</code> keyword — <code>allO
 is the convention OpenAPI, Pydantic, and most code generators recognize as inheritance.
 
 Spec: <a href="https://json-schema.org/draft/2020-12/json-schema-core.html#name-allof">JSON Schema 2020-12 §10.2.1.1 allOf</a>
+</details>
+
+## Versioning & Identity
+
+Because the meaning of each field lives in the **schema**, an instance references a
+*versioned* schema URL — pinning exactly which schema version, and therefore which ontology
+mapping, it complies with. You can remap terms or fix a semantic binding in a new schema
+version **without rewriting existing data**; migration tooling handles the upgrade.
+
+<details>
+<summary><b>How versioning &amp; identity work</b></summary>
+
+- Every schema has a stable, resolvable <code>$id</code> and SHOULD carry an
+  <code>x-oold-uuid</code> (a UUID that identifies the schema across renames) and an
+  <code>x-oold-version</code> (SemVer).
+- Instances reference a versioned schema URL via both <code>@context</code> and
+  <code>$schema</code> — e.g. <code>https://example.com/my-package/1.0.0/Person.schema.json</code>.
+- Schemas can declare compatibility explicitly with <code>x-oold-prior-version</code>,
+  <code>backward-compatible-with</code>, and <code>incompatible-with</code>.
+- This is why instances carry no inline <code>@type</code> or ontology IRIs: the versioned
+  schema owns the semantic mapping, so data stays stable while the mapping can evolve.
+
+Spec: <a href="https://github.com/OO-LD/schema#versioning">OO-LD Versioning</a>
 </details>
 
 ## Use Cases
@@ -461,10 +478,6 @@ reference implementation. Everything is open source
 
 ---
 
-**Start exploring**: Try the [interactive playground](https://oo-ld.github.io/playground-yaml/) or check out the [specification](https://github.com/OO-LD/schema).
-
----
-
 ## Funding
 
 The **generic, domain-independent** OO-LD framework — the specification and its reference
@@ -478,10 +491,9 @@ Förderkennzeichen **16IS26S16**).
   <img src="assets/prototype-fund-en.png" alt="Supported by the Prototype Fund" height="90">
 </p>
 
-Separately — and not part of the core development funded above — the **application of OO-LD
-to materials science** is funded by the European Union’s **Horizon Europe** research and
+The **application of OO-LD to materials science** is funded by the European Union’s **Horizon Europe** research and
 innovation programme under grant agreement No. 101293545 (MaterialsCommons). This grant covers
-a domain-specific extension only; the two efforts are scoped and accounted for independently.
+a domain-specific extension only.
 <p>
   <img src="assets/eu-funded-by-en.png" alt="With funding from the European Union’s Horizon Europe research and innovation programme" height="90">
   &nbsp;&nbsp;&nbsp;
