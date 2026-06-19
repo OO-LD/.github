@@ -1,0 +1,6 @@
+.idea
+.jbeval
+.venv
+
+# Local reference material & funding application — contains sensitive personal data, never publish
+docs/
