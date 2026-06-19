@@ -2,7 +2,8 @@
 
 Open community to develop schemas and tools to link object-oriented programming with linked data & the semantic web.
 
-> **We don't reinvent standards — we compose them. OO-LD as a *composition* is what we're bringing into open standardization.**
+> **We don't reinvent standards - we compose them. OO-LD as a *composition* is what we're bringing into open 
+> standardization.**
 
 The abbreviation `OO-LD` (and the placement of the hyphen) is intentional: it highlights the object-oriented focus while echoing JSON-LD.
 
@@ -10,20 +11,24 @@ The abbreviation `OO-LD` (and the placement of the hyphen) is intentional: it hi
 
 *The short version:*
 
-- **One source, many outputs** — the same schema validates JSON data and generates RDF, code (e.g. Pydantic), data-entry UIs, and OpenAPI specs.
-- **Standards-aligned, not standards-locked** — every document is at once a valid [JSON Schema 2020-12](https://json-schema.org/specification) and a valid [JSON-LD 1.1](https://www.w3.org/TR/json-ld11/) context; no fork, no new language.
-- **Reuses the tooling you already have** — works with existing JSON Schema and JSON-LD libraries; OO-LD-specific extensions are safely ignored by both.
-- **Linked data without the learning curve** — web-retrievable, semantically interoperable schemas without first becoming an RDF expert.
+- **One source, many outputs** - the same schema validates JSON data and generates RDF, code (e.g. Pydantic), 
+  data-entry UIs, and OpenAPI specs.
+- **Standards-aligned, not standards-locked** - every document is at once a valid [JSON Schema 2020-12]
+  (https://json-schema.org/specification) and a valid [JSON-LD 1.1](https://www.w3.org/TR/json-ld11/) context; no fork, no new language.
+- **Reuses the tooling you already have** - works with existing JSON Schema and JSON-LD libraries; OO-LD-specific 
+  extensions are safely ignored by both.
+- **Linked data without the learning curve** - web-retrievable, semantically interoperable schemas without first 
+  becoming an RDF expert.
 
 ## The Problem
 
 Modern applications need their data to do two jobs at once:
 
-1. **Be valid** — does this document have the right shape and types?
-2. **Mean something** — what real-world concept does each field actually refer to?
+1. **Be valid** - does this document have the right shape and types?
+2. **Mean something** - what real-world concept does each field actually refer to?
 
 [JSON Schema](https://json-schema.org) solves (1). [JSON-LD](https://json-ld.org) solves (2).
-Today, teams who need both maintain two parallel files that drift apart — and JSON-LD
+Today, teams who need both maintain two parallel files that drift apart - and JSON-LD
 assumes a level of semantic-web expertise that most application developers don't have.
 
 **OO-LD merges both into a single, referenceable, versioned document** so one source
@@ -33,7 +38,7 @@ linked data without first having to become RDF experts.
 <details>
 <summary><b>What is JSON Schema?</b></summary>
 
-A widely-used standard for describing the structure of JSON documents — which fields
+A widely-used standard for describing the structure of JSON documents - which fields
 exist, their types, which are required, and how they nest. Used by OpenAPI, form
 generators, and most modern validation libraries.
 Spec: [json-schema.org](https://json-schema.org/specification) (Draft 2020-12)
@@ -53,7 +58,7 @@ Spec: [www.w3.org/TR/json-ld11](https://www.w3.org/TR/json-ld11/)
 
 Linked Data is the practice of identifying things with web URLs so data from different
 sources can be joined. RDF (Resource Description Framework) is the underlying data
-model — every fact is a *triple* of `(subject, predicate, object)`. Together they make
+model - every fact is a *triple* of `(subject, predicate, object)`. Together they make
 data interoperable across organizations and tools.
 Intro: [www.w3.org/wiki/LinkedData](https://www.w3.org/wiki/LinkedData)
 </details>
@@ -100,7 +105,7 @@ flowchart LR
 > **One important inversion from standard JSON-LD:** in OO-LD, `@context` lives in the
 > **schema**, not in each data document. Every instance validated against an OO-LD
 > schema simply references it (`"@context": "https://example.com/MySchema.schema.json"`) and inherits all
-> semantics automatically — instances stay as plain JSON, with no per-document mapping
+> semantics automatically - instances stay as plain JSON, with no per-document mapping
 > boilerplate.
 
 <details>
@@ -162,16 +167,18 @@ This file is simultaneously a **JSON Schema** (defines structure) and a **JSON-L
 
 ## Try it yourself
 
-- UI and RDF generation: [OO-LD Playground](https://oo-ld.github.io/playground-yaml/) — Interactive examples with UI and RDF generation
-- Code and RDF generation: [Python Playground](https://oo-ld.github.io/playground-python-yaml/) — Advanced examples with code generation
-- [Full Tutorial](https://github.com/OO-LD/oold-tutorial) — Step-by-step guide with working examples
+- UI and RDF generation: [OO-LD Playground](https://oo-ld.github.io/playground-yaml/) - Interactive examples with UI 
+  and RDF generation
+- Code and RDF generation: [Python Playground](https://oo-ld.github.io/playground-python-yaml/) - Advanced examples 
+  with code generation
+- [Full Tutorial](https://github.com/OO-LD/oold-tutorial) - Step-by-step guide with working examples
 
 ## Inheritance and Composition
 
 OO-LD schemas extend each other using standard JSON Schema mechanisms (`$ref`, `allOf`),
 and the semantic mappings stack automatically. Here's `Person` extended into `Employee`.
 
-**Base schema — `Person.schema.json`:**
+**Base schema - `Person.schema.json`:**
 
 ```json
 {
@@ -191,7 +198,7 @@ and the semantic mappings stack automatically. Here's `Person` extended into `Em
 }
 ```
 
-**Derived schema — `Employee.schema.json`:**
+**Derived schema - `Employee.schema.json`:**
 
 ```json
 {
@@ -234,7 +241,7 @@ Two inheritance mechanisms work in parallel:
 | **Structure** (JSON Schema) | `allOf` + `$ref` to parent schema | Employee must satisfy all of Person's constraints plus its own |
 | **Semantics** (JSON-LD) | `@context` array referencing parent schema | Employee inherits Person's term mappings, then adds its own |
 
-**A data instance — `alice.json`:**
+**A data instance - `alice.json`:**
 
 ```json
 {
@@ -246,8 +253,8 @@ Two inheritance mechanisms work in parallel:
 }
 ```
 
-Instances stay as plain JSON. They reference the schema once — via both `@context`
-(for semantics) and `$schema` (for validation) — and inherit everything from it.
+Instances stay as plain JSON. They reference the schema once - via both `@context`
+(for semantics) and `$schema` (for validation) - and inherit everything from it.
 No per-instance `@type`, no `@id` boilerplate required.
 
 This single instance simultaneously:
@@ -330,7 +337,7 @@ extends that one":
 
 <pre>"allOf": [{ "$ref": "https://example.com/Person.schema.json" }]</pre>
 
-JSON Schema doesn't have a dedicated <code>extends</code> keyword — <code>allOf + $ref</code>
+JSON Schema doesn't have a dedicated <code>extends</code> keyword - <code>allOf + $ref</code>
 is the convention OpenAPI, Pydantic, and most code generators recognize as inheritance.
 
 Spec: <a href="https://json-schema.org/draft/2020-12/json-schema-core.html#name-allof">JSON Schema 2020-12 §10.2.1.1 allOf</a>
@@ -339,7 +346,7 @@ Spec: <a href="https://json-schema.org/draft/2020-12/json-schema-core.html#name-
 ## Versioning & Identity
 
 Because the meaning of each field lives in the **schema**, an instance references a
-*versioned* schema URL — pinning exactly which schema version, and therefore which ontology
+*versioned* schema URL - pinning exactly which schema version, and therefore which ontology
 mapping, it complies with. You can remap terms or fix a semantic binding in a new schema
 version **without rewriting existing data**; migration tooling handles the upgrade.
 
@@ -350,7 +357,7 @@ version **without rewriting existing data**; migration tooling handles the upgra
   <code>x-oold-uuid</code> (a UUID that identifies the schema across renames) and an
   <code>x-oold-version</code> (SemVer).
 - Instances reference a versioned schema URL via both <code>@context</code> and
-  <code>$schema</code> — e.g. <code>https://example.com/my-package/1.0.0/Person.schema.json</code>.
+  <code>$schema</code> - e.g. <code>https://example.com/my-package/1.0.0/Person.schema.json</code>.
 - Schemas can declare compatibility explicitly with <code>x-oold-prior-version</code>,
   <code>backward-compatible-with</code>, and <code>incompatible-with</code>.
 - This is why instances carry no inline <code>@type</code> or ontology IRIs: the versioned
@@ -362,31 +369,31 @@ Spec: <a href="https://github.com/OO-LD/schema#versioning">OO-LD Versioning</a>
 ## Use Cases
 
 OO-LD targets teams who need interoperable, semantically meaningful data **without a
-dedicated semantic-web specialist on staff** — from application developers to research labs
+dedicated semantic-web specialist on staff** - from application developers to research labs
 to public administration. One schema serves validation, RDF, code, and UI at once:
 
-- **LLM-Structured Output** — JSON Schema is the contract LLMs use for structured
+- **LLM-Structured Output** - JSON Schema is the contract LLMs use for structured
   generation. Because an OO-LD schema *is* a JSON Schema, you can hand it directly to LLM
   APIs and frameworks like [LangChain](https://python.langchain.com/docs/how_to/structured_output/)
-  — and get back data that is both validated *and* semantically annotated, ready for RDF
+  - and get back data that is both validated *and* semantically annotated, ready for RDF
   or a knowledge graph.
-- **APIs & Code Generation** — Generate typed classes ([Pydantic](https://docs.pydantic.dev/)
+- **APIs & Code Generation** - Generate typed classes ([Pydantic](https://docs.pydantic.dev/)
   dataclasses) and [OpenAPI](https://www.openapis.org/) specifications from the same schema,
   with semantic context preserved through the whole stack (e.g. via [FastAPI](https://fastapi.tiangolo.com/)).
-- **Auto-generated User Interfaces** — Render data-entry forms and graph editors straight
-  from the schema — no hand-written UI code — including autocomplete dropdowns backed by
+- **Auto-generated User Interfaces** - Render data-entry forms and graph editors straight
+  from the schema - no hand-written UI code - including autocomplete dropdowns backed by
   linked-data sources.
-- **Research Data Management** — Describe experiments, samples, and instruments once and
+- **Research Data Management** - Describe experiments, samples, and instruments once and
   get validation, RDF export, and data-entry forms together. [OpenSemanticLab](https://github.com/OpenSemanticLab)
   builds its LIMS, ELN, and knowledge-base platform on OO-LD, integrating with research-data
   infrastructures such as [NFDI](https://www.nfdi.de/).
-- **Public Administration & Civic-Tech** — Build interoperable data structures that carry
+- **Public Administration & Civic-Tech** - Build interoperable data structures that carry
   their meaning with them, making linked-data interoperability practical for teams that
   aren't RDF experts.
 
 ## How OO-LD compares
 
-OO-LD's core bet: **don't invent a new language — compose two standards developers may
+OO-LD's core bet: **don't invent a new language - compose two standards developers may
 already use.** Here's how that compares to the common alternatives:
 
 | Approach | Validates plain JSON | Linked-data / RDF semantics | New language to learn | Reuses existing tooling |
@@ -401,7 +408,7 @@ already use.** Here's how that compares to the common alternatives:
 
 - **Formal reasoning / inference** over your data → [OWL](https://www.w3.org/TR/owl2-overview/)
 - **Validating data that's already RDF-native** → [SHACL](https://www.w3.org/TR/shacl/)
-- **A high-level modeling language with many export targets** → [LinkML](https://linkml.io/) —
+- **A high-level modeling language with many export targets** → [LinkML](https://linkml.io/) -
   which can itself *generate* OO-LD schemas (JSON Schema + JSON-LD context), so the two are
   complementary rather than exclusive.
 
@@ -423,7 +430,7 @@ reference implementation. Everything is open source
 - Interactive playgrounds for UI, RDF, and Python code generation
 - In production use within OpenSemanticLab
 
-**🚧 In progress — toward v1.0**
+**🚧 In progress - toward v1.0**
 - Finalized OO-LD 1.0 specification with documented best practices
 - Production-ready Python reference implementation (stable API, >90% test coverage)
 - Offline schema bundler
@@ -432,7 +439,7 @@ reference implementation. Everything is open source
 - Schema-versioning and migration tooling
 - Automated form / UI generation and a graph viewer
 
-**📋 Planned — sustainability & governance**
+**📋 Planned - sustainability & governance**
 - Community structure with a steering committee
 - Package registry for community-contributed schemas
 - Tutorial video series and webinars
@@ -440,37 +447,37 @@ reference implementation. Everything is open source
 
 ## Resources
 
-### Start here — which tool for which job
+### Start here - which tool for which job
 
-| You want to… | Go to |
-|---|---|
-| **Try OO-LD in your browser** (UI + RDF from a schema) | [Playground (YAML)](https://oo-ld.github.io/playground-yaml/) |
+| You want to… | Go to                                                                                                                        |
+|---|------------------------------------------------------------------------------------------------------------------------------|
+| **Try OO-LD in your browser** (UI + RDF from a schema) | [Playground (YAML)](https://oo-ld.github.io/playground-yaml/)                                                                |
 | **Generate code** (Python / Pydantic) from a schema | [Playground (Python)](https://oo-ld.github.io/playground-python-yaml/) · [oold-python](https://github.com/OO-LD/oold-python) |
-| **Use OO-LD in a Python project** (codegen, RDF import/export, graph-object binding) | [oold-python](https://github.com/OO-LD/oold-python) |
-| **Auto-generate data-entry forms / UI** | [Playground (YAML)](https://oo-ld.github.io/playground-yaml/) |
-| **Visualize or edit a semantic graph** | [interactive-semantic-graph](https://github.com/OpenSemanticLab/interactive-semantic-graph) |
-| **Use schemas for LLM structured output** | Hand the schema to your LLM API — example: [OSW Chatbot](https://github.com/opensemanticworld/osw-chatbot) |
-| **Describe semantic workflows** | [AWL Schema](https://github.com/OO-LD/awl-schema) · [AWL Playground](https://oo-ld.github.io/playground-awl/) |
-| **Run a full data-management platform** | [OpenSemanticLab](https://github.com/OpenSemanticLab) |
-| **Read the formal specification** | [OO-LD Specification](https://github.com/OO-LD/schema) |
+| **Use OO-LD in a Python project** (codegen, RDF import/export, graph-object binding) | [oold-python](https://github.com/OO-LD/oold-python)                                                                          |
+| **Auto-generate data-entry forms / UI** | [Playground (YAML)](https://oo-ld.github.io/playground-yaml/)                                                                |
+| **Visualize or edit a semantic graph** | [interactive-semantic-graph](https://github.com/OpenSemanticLab/interactive-semantic-graph)                                  |
+| **Use schemas for LLM structured output** | Hand the schema to your LLM API - example: [OSW Chatbot]<br/>(https://github.com/opensemanticworld/osw-chatbot)              |
+| **Describe semantic workflows** | [AWL Schema](https://github.com/OO-LD/awl-schema) · [AWL Playground](https://oo-ld.github.io/playground-awl/)                |
+| **Run a full data-management platform** | [OpenSemanticLab](https://github.com/OpenSemanticLab)                                                                        |
+| **Read the formal specification** | [OO-LD Specification](https://github.com/OO-LD/schema)                                                                       |
 
 ### Documentation
-- [OO-LD Specification](https://github.com/OO-LD/schema) — Complete schema specification and examples
+- [OO-LD Specification](https://github.com/OO-LD/schema) - Complete schema specification and examples
 
 ### Tools
-- [oold-python](https://github.com/OO-LD/oold-python) — Python code generator and utilities
-- [Playground (YAML)](https://oo-ld.github.io/playground-yaml/) — Interactive UI and RDF generation
-- [Playground (Python)](https://oo-ld.github.io/playground-python-yaml/) — Try code generation online
-- [AWL Schema](https://github.com/OO-LD/awl-schema) — Semantic workflow descriptions
+- [oold-python](https://github.com/OO-LD/oold-python) - Python code generator and utilities
+- [Playground (YAML)](https://oo-ld.github.io/playground-yaml/) - Interactive UI and RDF generation
+- [Playground (Python)](https://oo-ld.github.io/playground-python-yaml/) - Try code generation online
+- [AWL Schema](https://github.com/OO-LD/awl-schema) - Semantic workflow descriptions
 
 ### Reference Implementations
-- [OpenSemanticLab](https://github.com/OpenSemanticLab) — Research data management framework
-- [OpenSemanticWorld-Packages](https://github.com/OpenSemanticWorld-Packages) — Schema repository
-- [OpenSemanticWorld](https://opensemantic.world) — Schema registry
+- [OpenSemanticLab](https://github.com/OpenSemanticLab) - Research data management framework
+- [OpenSemanticWorld-Packages](https://github.com/OpenSemanticWorld-Packages) - Schema repository
+- [OpenSemanticWorld](https://opensemantic.world) - Schema registry
 
 ### Related Projects
-- [Battery Knowledge Graph](https://github.com/BIG-MAP/BatteryKnowledgeGraph) — Scientific metadata using OO-LD
-- [OSW Chatbot](https://github.com/opensemanticworld/osw-chatbot) — LLM integration examples
+- [Battery Knowledge Graph](https://github.com/BIG-MAP/BatteryKnowledgeGraph) - Scientific metadata using OO-LD
+- [OSW Chatbot](https://github.com/opensemanticworld/osw-chatbot) - LLM integration examples
 
 
 ### Get Involved
@@ -480,8 +487,8 @@ reference implementation. Everything is open source
 
 ## Funding
 
-The **generic, domain-independent** OO-LD framework — the specification and its reference
-implementation — is funded by the German **Federal Ministry of Research, Technology and
+The **generic, domain-independent** OO-LD framework - the specification and its reference
+implementation - is funded by the German **Federal Ministry of Research, Technology and
 Space (BMFTR)** through the **[Prototype Fund](https://prototypefund.de)** (funding code /
 Förderkennzeichen **16IS26S16**).
 
