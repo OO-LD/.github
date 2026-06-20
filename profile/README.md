@@ -102,11 +102,12 @@ flowchart LR
 | Generated code (Pydantic, dataclasses) | OO-LD code generator | full schema + context |
 | Generated forms / UI | JSON-Schema form renderer | `properties`, `title`, `description` |
 
-> **One important inversion from standard JSON-LD:** in OO-LD, `@context` lives in the
-> **schema**, not in each data document. Every instance validated against an OO-LD
-> schema simply references it (`"@context": "https://example.com/MySchema.schema.json"`) and inherits all
-> semantics automatically - instances stay as plain JSON, with no per-document mapping
-> boilerplate.
+> **How OO-LD applies the JSON-LD rules:** in OO-LD, the `@context` in an OO-LD instance document references the remote 
+> `@context` (`"@context": "https://example.com/MySchema.schema.json"`) that lives in the OO-LD schema, rather than 
+> defining it inline. Every referencing instance inherits all semantics automatically - instances stay as plain JSON, 
+> with no per-document mapping boilerplate.
+> The `@context` in the OO-LD schema is not to be applied to the content of that document but to the instances alone. 
+> OO-LD schemas are never to be processed as JSON-LD documents themselves.
 
 <details>
 <summary><b>What is <code>@context</code>?</b></summary>
