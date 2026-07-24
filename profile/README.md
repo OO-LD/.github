@@ -6,8 +6,8 @@ OO-LD (Object-Oriented Linked Data) is a unified framework that combines JSON Sc
 
 ## Why OO-LD?
 
-- **Standards-Based**: Strictly adheres to W3C standards (JSON-LD 1.1, JSON-SCHEMA 2020-12) - no new language to learn
-- **Tool Compatibility**: Works with all existing JSON-SCHEMA and JSON-LD tooling
+- **Standards-Based**: Strictly adheres to W3C standards (JSON-LD 1.1, JSON Schema 2020-12) - no new language to learn
+- **Tool Compatibility**: Works with all existing JSON Schema and JSON-LD tooling
 - **Web-Native**: Schemas follow linked data principles, making them retrievable over the web for flexible composition
 - **Multi-Purpose**: Use the same schema for validation, RDF generation, code generation, UI generation, and API definitions
 - **Developer-Friendly**: Compatible with LLM APIs, OpenAPI, and modern development workflows
