@@ -463,7 +463,7 @@ reference implementation. Everything is open source
 | **Read the formal specification** | [OO-LD Specification](https://github.com/OO-LD/schema)                                                                       |
 
 ### Documentation
-- [OO-LD Specification](https://github.com/OO-LD/schema) - Complete schema specification and examples
+- [OO-LD Specification](https://github.com/OO-LD/oold-schema) - Complete schema specification and examples
 
 ### Tools
 - [oold-python](https://github.com/OO-LD/oold-python) - Python code generator and utilities
@@ -482,7 +482,15 @@ reference implementation. Everything is open source
 
 
 ### Get Involved
-- [Report Issues](https://github.com/OO-LD/schema/issues)
+
+Questions, ideas and design discussion are welcome - for now all in the issue tracker (one searchable place while the community is small):
+
+- **Question** (usage, tooling, spec interpretation) - open an issue with the [`question`](https://github.com/OO-LD/oold-schema/labels/question) label.
+- **Open-ended discussion / proposal** - open an issue with the [`discussion`](https://github.com/OO-LD/oold-schema/labels/discussion) label.
+- **Bug or feature** - open a regular issue in the relevant repository.
+- **Contribute** - pull requests are welcome; for larger changes, open a `discussion` issue first.
+
+If demand grows we'll add GitHub Discussions and/or a chat.
 
 ---
 
