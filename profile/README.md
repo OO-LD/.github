@@ -6,8 +6,8 @@ OO-LD (Object-Oriented Linked Data) is a unified framework that combines JSON Sc
 
 ## Why OO-LD?
 
-- **Standards-Based**: Strictly adheres to W3C standards (JSON-LD 1.1, JSON-SCHEMA 2020-12) - no new language to learn
-- **Tool Compatibility**: Works with all existing JSON-SCHEMA and JSON-LD tooling
+- **Standards-Based**: Strictly adheres to W3C standards (JSON-LD 1.1, JSON Schema 2020-12) - no new language to learn
+- **Tool Compatibility**: Works with all existing JSON Schema and JSON-LD tooling
 - **Web-Native**: Schemas follow linked data principles, making them retrievable over the web for flexible composition
 - **Multi-Purpose**: Use the same schema for validation, RDF generation, code generation, UI generation, and API definitions
 - **Developer-Friendly**: Compatible with LLM APIs, OpenAPI, and modern development workflows
@@ -50,7 +50,7 @@ This file is simultaneously a **JSON Schema** (defines structure) and a **JSON-L
 ## Resources
 
 ### Documentation
-- [OO-LD Specification](https://github.com/OO-LD/schema) - Complete schema specification and examples
+- [OO-LD Specification](https://github.com/OO-LD/oold-schema) - Complete schema specification and examples
 
 ### Tools
 - [oold-python](https://github.com/OO-LD/oold-python) - Python code generator and utilities
@@ -69,11 +69,19 @@ This file is simultaneously a **JSON Schema** (defines structure) and a **JSON-L
 
 
 ### Get Involved
-- [Report Issues](https://github.com/OO-LD/schema/issues)
+
+Questions, ideas and design discussion are welcome - for now all in the issue tracker (one searchable place while the community is small):
+
+- **Question** (usage, tooling, spec interpretation) - open an issue with the [`question`](https://github.com/OO-LD/oold-schema/labels/question) label.
+- **Open-ended discussion / proposal** - open an issue with the [`discussion`](https://github.com/OO-LD/oold-schema/labels/discussion) label.
+- **Bug or feature** - open a regular issue in the relevant repository.
+- **Contribute** - pull requests are welcome; for larger changes, open a `discussion` issue first.
+
+If demand grows we'll add GitHub Discussions and/or a chat.
 
 ---
 
-**Start exploring**: Try the [interactive playground](https://oo-ld.github.io/playground-yaml/) or check out the [specification](https://github.com/OO-LD/schema).
+**Start exploring**: Try the [interactive playground](https://oo-ld.github.io/playground-yaml/) or check out the [specification](https://github.com/OO-LD/oold-schema).
 
 ---
 
