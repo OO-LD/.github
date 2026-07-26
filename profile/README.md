@@ -364,7 +364,7 @@ version **without rewriting existing data**; migration tooling handles the upgra
 - This is why instances carry no inline <code>@type</code> or ontology IRIs: the versioned
   schema owns the semantic mapping, so data stays stable while the mapping can evolve.
 
-Spec: <a href="https://github.com/OO-LD/schema#versioning">OO-LD Versioning</a>
+Spec: <a href="https://oo-ld.org/latest/spec/#versioning">OO-LD Versioning</a>
 </details>
 
 ## Use Cases
@@ -394,16 +394,25 @@ to public administration. One schema serves validation, RDF, code, and UI at onc
 
 ## How OO-LD compares
 
-OO-LD's core bet: **don't invent a new language - compose two standards developers may
-already use.** Here's how that compares to the common alternatives:
+OO-LD's core bet: **don't invent a new language - a single document is at once a valid JSON
+Schema and a referenceable JSON-LD context, so structure and semantics stay in one source,
+with no separate modelling language and no generate-then-sync step.** Here's how that
+compares to the common alternatives (a ✅ is always the favourable outcome):
 
-| Approach | Validates plain JSON | Linked-data / RDF semantics | New language to learn | Reuses existing tooling |
-|---|---|---|---|---|
-| **OO-LD** | ✅ | ✅ | ❌ | ✅ JSON Schema *and* JSON-LD tools |
-| JSON Schema alone | ✅ | ❌ | ❌ | ✅ |
-| JSON-LD alone | ❌ (no structural rules) | ✅ | ❌ | ✅ |
-| [LinkML](https://linkml.io/) | ✅ via generated JSON Schema | ✅ via generated context | ✅ custom YAML language | Own toolchain + generators |
-| [SHACL](https://www.w3.org/TR/shacl/) / [OWL](https://www.w3.org/TR/owl2-overview/) | ❌ RDF only | ✅ | ✅ | RDF tooling only |
+| Approach | Validates plain JSON | RDF semantics | Both from one source *(no generation/sync step)* | No new language | Reuses existing tooling |
+|---|---|---|---|---|---|
+| **OO-LD** | ✅ | ✅ | ✅ | ✅ | ✅ JSON Schema *and* JSON-LD tools |
+| JSON Schema alone | ✅ | ❌ | ➖ *structure only* | ✅ | ✅ |
+| JSON-LD alone | ❌ *(no structural rules)* | ✅ | ➖ *semantics only* | ✅ | ✅ |
+| [LinkML](https://linkml.io/) | ✅ *via generated* JSON Schema | ✅ *via generated* context | ❌ *separate schema + context* | ❌ *custom YAML language* | Own toolchain + generators |
+| [SHACL](https://www.w3.org/TR/shacl/) / [OWL](https://www.w3.org/TR/owl2-overview/) | ❌ *RDF only* | ✅ | ➖ *RDF only* | ❌ | RDF tooling only |
+
+OO-LD does add a small set of optional `x-oold-*` annotation keywords (range, reverse
+properties, UI hints, ...) that generic JSON Schema 2020-12 validators ignore. These extend
+the two base standards rather than replace them, and are kept only where no existing
+standard fits - the goal is to interoperate through generated bridges (`x-jsonld-*` for
+OpenAPI/MCP, SHACL for validation, OWL for reasoning, bidirectional LinkML) rather than a
+walled garden.
 
 **When another tool may fit better:**
 
@@ -414,7 +423,7 @@ already use.** Here's how that compares to the common alternatives:
   complementary rather than exclusive.
 
 For the full landscape (AAS, SAMM, TreeLDR, SmartDataModels, dlite, NOMAD, and more), see the
-[Related Work table in the specification](https://github.com/OO-LD/schema#related-work).
+[Related Work table in the specification](https://oo-ld.org/latest/reference/#related-work).
 
 ## Project Status & Roadmap
 
@@ -460,7 +469,7 @@ reference implementation. Everything is open source
 | **Use schemas for LLM structured output** | Hand the schema to your LLM API - example: [OSW Chatbot]<br/>(https://github.com/opensemanticworld/osw-chatbot)              |
 | **Describe semantic workflows** | [AWL Schema](https://github.com/OO-LD/awl-schema) · [AWL Playground](https://oo-ld.github.io/playground-awl/)                |
 | **Run a full data-management platform** | [OpenSemanticLab](https://github.com/OpenSemanticLab)                                                                        |
-| **Read the formal specification** | [OO-LD Specification](https://github.com/OO-LD/schema)                                                                       |
+| **Read the formal specification** | [OO-LD Specification](https://oo-ld.org/latest/spec/)                                                                       |
 
 ### Documentation
 - [OO-LD Specification](https://github.com/OO-LD/oold-schema) - Complete schema specification and examples
